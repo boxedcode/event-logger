@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <event_log type="event" sub_type="pageview" action="click" created="2015-03-22 17:15:23" />
+    <event_log type="notification" sub_type="pageview" action="click" message="Bob Smith viewed a page" created="2015-03-22 17:25:23" />
+</dataset>
