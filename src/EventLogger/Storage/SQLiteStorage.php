@@ -15,6 +15,12 @@
 
 namespace EventLogger\Storage;
 
+/**
+ * A simple SQLite persistence strategy for storing and querying events
+ *
+ * Class SQLiteStorage
+ * @package EventLogger\Storage
+ */
 class SQLiteStorage implements StorageInterface
 {
     /**

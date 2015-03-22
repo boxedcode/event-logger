@@ -1,13 +1,30 @@
 <?php
+/**
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 namespace tests\EventLogger\Storage;
 
 use EventLogger\Storage\SQLiteStorage;
 use EventLogger\Storage\StorageInterface;
-use PHPUnit_Extensions_Database_DataSet_IDataSet;
-use PHPUnit_Extensions_Database_DB_IDatabaseConnection;
 
-class SQLiteStorageTest extends \PHPUnit_Extensions_Database_TestCase
+/**
+ * Test class for the SQLiteStorage persistence strategy
+ *
+ * Class SQLiteStorageTest
+ * @package tests\EventLogger\Storage
+ */
+class SQLiteStorageTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var \PDO
@@ -20,12 +37,12 @@ class SQLiteStorageTest extends \PHPUnit_Extensions_Database_TestCase
     protected $storage;
 
     /**
-     * Returns the test database connection.
-     *
-     * @return PHPUnit_Extensions_Database_DB_IDatabaseConnection
+     * Setup method
      */
-    protected function getConnection()
+    protected function setUp()
     {
+        parent::setUp();
+
         $pdo = new \PDO('sqlite::memory:');
         $pdo->exec(sprintf("CREATE TABLE IF NOT EXISTS %s (
             id INTEGER PRIMARY KEY,
@@ -39,27 +56,8 @@ class SQLiteStorageTest extends \PHPUnit_Extensions_Database_TestCase
             action TEXT DEFAULT NULL,
             user TEXT DEFAULT NULL
         )",SQLiteStorage::TABLE_NAME));
+
         $this->pdo = $pdo;
-
-        return $this->createDefaultDBConnection($pdo, ':memory:');
-    }
-
-    /**
-     * Returns the test dataset.
-     *
-     * @return PHPUnit_Extensions_Database_DataSet_IDataSet
-     */
-    protected function getDataSet()
-    {
-        return $this->createFlatXMLDataSet(dirname(__FILE__).'/_files/event-seed.xml');
-    }
-
-    /**
-     * Setup method
-     */
-    protected function setUp()
-    {
-        parent::setUp();
 
         $this->storage = new SQLiteStorage($this->pdo);
     }
