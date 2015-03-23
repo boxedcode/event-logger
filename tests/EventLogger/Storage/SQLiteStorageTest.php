@@ -41,8 +41,6 @@ class SQLiteStorageTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        parent::setUp();
-
         $pdo = new \PDO('sqlite::memory:');
         $pdo->exec(sprintf("CREATE TABLE IF NOT EXISTS %s (
             id INTEGER PRIMARY KEY,

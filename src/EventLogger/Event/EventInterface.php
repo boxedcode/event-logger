@@ -157,4 +157,11 @@ interface EventInterface
      * @return mixed
      */
     public function setUser($user);
+
+    /**
+     * Get this event as an array
+     *
+     * @return mixed
+     */
+    public function toArray();
 }
