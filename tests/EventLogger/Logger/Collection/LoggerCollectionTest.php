@@ -23,6 +23,12 @@ use EventLogger\Logger\LoggerInterface;
 use EventLogger\Storage\NullStorage;
 use EventLogger\Storage\SQLiteStorage;
 
+/**
+ * Test class for the LoggerCollection
+ *
+ * Class LoggerCollectionTest
+ * @package tests\EventLogger\Logger\Collection
+ */
 class LoggerCollectionTest extends \PHPUnit_Framework_TestCase
 {
     /**

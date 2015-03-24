@@ -22,6 +22,12 @@ use EventLogger\Storage\NullStorage;
 use EventLogger\Storage\SQLiteStorage;
 use EventLogger\Storage\StorageInterface;
 
+/**
+ * Test class for the Logger
+ *
+ * Class LoggerTest
+ * @package tests\EventLogger\Logger
+ */
 class LoggerTest extends \PHPUnit_Framework_TestCase
 {
     /**

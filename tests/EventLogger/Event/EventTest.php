@@ -18,6 +18,12 @@ namespace tests\EventLogger\Event;
 use EventLogger\Event\Event;
 use EventLogger\Event\EventInterface;
 
+/**
+ * Test class for an Event
+ *
+ * Class EventTest
+ * @package tests\EventLogger\Event
+ */
 class EventTest extends \PHPUnit_Framework_TestCase
 {
     /**
