@@ -1,4 +1,6 @@
 # Event logger library with support for multiple persistence strategies
+[![Build Status](https://travis-ci.org/kabudu/event-logger.svg?branch=master)](https://travis-ci.org/kabudu/event-logger)
+
 Event logger is a PHP based event logger library that makes it easy to collect and query events in your web application based on user or system actions.
 
 With event logger you can:
