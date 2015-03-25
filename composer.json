@@ -13,10 +13,12 @@
     "psr-0": { "EventLogger" : "src/" }
   },
   "require": {
-    "php": ">=5.3.3",
-    "sqlite": ">=3.0.7"
+    "php": ">=5.3.3"
   },
   "require-dev": {
     "phpunit/phpunit": "4.7.*@dev"
+  },
+  "suggest": {
+    "sqlite": "for unit test coverage and using the shipped SQLite persistence implementation"
   }
 }
