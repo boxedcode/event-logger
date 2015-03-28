@@ -254,7 +254,7 @@ class Event implements EventInterface
             'message'       =>  $this->getMessage(),
             'data'          =>  $this->getData(),
             'created'       =>  isset($this->created) ? $this->getCreated()->format('Y-m-d H:i:s') : date('Y-m-d H:i:s'),
-            'action'        =>  $this->getUser(),
+            'action'        =>  $this->getAction(),
             'user'          =>  $this->getUser()
         );
     }
