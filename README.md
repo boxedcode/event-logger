@@ -141,7 +141,7 @@ $collection->addEvent($event1);
 $collection->addEvent($event2);
 
 // Log the events
-$logger->logMultiple($collection);
+$logger->log($collection);
 ```
 
 ## Log an Event to Multiple Persistence Back-ends
