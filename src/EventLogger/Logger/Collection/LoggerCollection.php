@@ -16,7 +16,7 @@
 namespace EventLogger\Logger\Collection;
 
 use EventLogger\Event\Collection\EventCollectionInterface;
-use EventLogger\Event\EventInterface;
+use EventLogger\Logger\LoggableInterface;
 use EventLogger\Logger\LoggerInterface;
 use Traversable;
 
@@ -54,10 +54,10 @@ class LoggerCollection implements LoggerCollectionInterface
     public function offsetExists($offset)
     {
         if (isset($this->loggers[$offset])) {
-            return TRUE;
+            return true;
         }
 
-        return FALSE;
+        return false;
     }
 
     /**
@@ -75,7 +75,7 @@ class LoggerCollection implements LoggerCollectionInterface
             return $this->loggers[$offset];
         }
 
-        return NULL;
+        return null;
     }
 
     /**
@@ -114,27 +114,20 @@ class LoggerCollection implements LoggerCollectionInterface
     /**
      * Log an event
      *
-     * @param EventInterface $event
+     * @param LoggableInterface $loggable
      * @return mixed
      */
-    public function log(EventInterface $event)
+    public function log(LoggableInterface $loggable)
     {
-        foreach ($this as $logger) {
-            $logger->log($event);
-        }
-    }
-
-    /**
-     * Log a collection of events
-     *
-     * @param EventCollectionInterface $eventCollection
-     * @return mixed
-     */
-    public function logMultiple(EventCollectionInterface $eventCollection)
-    {
-        foreach ($this as $logger) {
-            foreach ($eventCollection as $event) {
-                $logger->log($event);
+        if ($loggable instanceof EventCollectionInterface) {
+            foreach ($this as $logger) {
+                foreach ($loggable as $event) {
+                    $logger->log($event);
+                }
+            }
+        } else {
+            foreach ($this as $logger) {
+                $logger->log($loggable);
             }
         }
     }

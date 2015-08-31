@@ -65,7 +65,7 @@ class LoggerCollectionTest extends \PHPUnit_Framework_TestCase
             created TEXT DEFAULT '0000-00-00 00:00:00',
             action TEXT DEFAULT NULL,
             user TEXT DEFAULT NULL
-        )",SQLiteStorage::TABLE_NAME));
+        )", SQLiteStorage::TABLE_NAME));
 
         $this->logger1 = new Logger(new SQLiteStorage($pdo));
         $this->logger2 = new Logger(new NullStorage());
@@ -120,13 +120,13 @@ class LoggerCollectionTest extends \PHPUnit_Framework_TestCase
         $this->collection->log($event);
 
         $results = $this->collection[0]->getStorage()->fetch(array(
-            'type'  =>  'event',
-            'sub_type'  =>  'pageview',
+            'type' => 'event',
+            'sub_type' => 'pageview',
         ));
 
         $this->assertTrue(1 == count($results));
         $this->assertTrue($results[0]['sub_type'] == 'pageview');
 
-        $this->assertTrue(NULL === $this->collection[1]->getStorage()->fetch(array()));
+        $this->assertTrue(null === $this->collection[1]->getStorage()->fetch(array()));
     }
 }

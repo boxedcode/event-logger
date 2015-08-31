@@ -52,7 +52,7 @@ class LoggerTest extends \PHPUnit_Framework_TestCase
             created TEXT DEFAULT '0000-00-00 00:00:00',
             action TEXT DEFAULT NULL,
             user TEXT DEFAULT NULL
-        )",SQLiteStorage::TABLE_NAME));
+        )", SQLiteStorage::TABLE_NAME));
 
         $storage = new SQLiteStorage($pdo);
         $this->logger = new Logger($storage);
@@ -97,8 +97,8 @@ class LoggerTest extends \PHPUnit_Framework_TestCase
         $this->logger->log($event);
 
         $results = $this->logger->getStorage()->fetch(array(
-            'type'  =>  'event',
-            'sub_type'  =>  'pageview',
+            'type' => 'event',
+            'sub_type' => 'pageview',
         ));
 
         $this->assertTrue(1 == count($results));

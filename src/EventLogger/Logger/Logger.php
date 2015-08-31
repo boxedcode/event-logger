@@ -16,7 +16,6 @@
 namespace EventLogger\Logger;
 
 use EventLogger\Event\Collection\EventCollectionInterface;
-use EventLogger\Event\EventInterface;
 use EventLogger\Storage\StorageInterface;
 
 /**
@@ -47,24 +46,17 @@ class Logger implements LoggerInterface
     /**
      * Log an event
      *
-     * @param EventInterface $event
+     * @param LoggableInterface $loggable
      * @return mixed
      */
-    public function log(EventInterface $event)
+    public function log(LoggableInterface $loggable)
     {
-        $this->storage->save($event->toArray());
-    }
-
-    /**
-     * Log a collection of events
-     *
-     * @param EventCollectionInterface $eventCollection
-     * @return mixed
-     */
-    public function logMultiple(EventCollectionInterface $eventCollection)
-    {
-        foreach ($eventCollection as $event) {
-            $this->storage->save($event->toArray());
+        if ($loggable instanceof EventCollectionInterface) {
+            foreach ($loggable as $eventEntity) {
+                $this->storage->save($eventEntity->toArray());
+            }
+        } else {
+            $this->storage->save($loggable->toArray());
         }
     }
 

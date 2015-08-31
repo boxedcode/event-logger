@@ -54,21 +54,22 @@ class SQLiteStorage implements StorageInterface
     public function save(array $data)
     {
         $dataCopy = $data;
-        $sql = "INSERT INTO ".self::TABLE_NAME . "(";
+        $sql = "INSERT INTO " . self::TABLE_NAME . "(";
         $columns = '';
         $valueParams = '';
-        foreach($dataCopy as $key => $value) {
+        foreach ($dataCopy as $key => $value) {
             $columns .= $key . ', ';
             $valueParams .= ':' . $key . ', ';
-            if(is_array($value)) {
+            if (is_array($value)) {
                 $data[$key] = json_encode($value);
             }
         }
-        $sql .= rtrim($columns,', ') . ') VALUES (' . rtrim($valueParams, ', ') . ')';
+        $sql .= rtrim($columns, ', ') . ') VALUES (' . rtrim($valueParams, ', ') . ')';
         $stmt = $this->pdo->prepare($sql);
-        foreach($data as $key => $value) {
+        foreach ($data as $key => $value) {
             $stmt->bindValue(':' . $key, $value);
         }
+
         return $stmt->execute();
     }
 
@@ -84,15 +85,15 @@ class SQLiteStorage implements StorageInterface
         $commonSql = $this->createCommonFetchSql($criteria);
         $sql = 'SELECT * ' . $commonSql;
         $stmt = $this->pdo->prepare($sql);
-        foreach($criteria as $key => $value) {
+        foreach ($criteria as $key => $value) {
             $stmt->bindValue(':' . $key, $value);
         }
         $stmt->execute();
 
         $data = array();
 
-        while($record = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-            if(is_callable($callback)) {
+        while ($record = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            if (is_callable($callback)) {
                 $record = call_user_func($callback, $record);
             }
 
@@ -110,12 +111,13 @@ class SQLiteStorage implements StorageInterface
      */
     private function createCommonFetchSql(array $criteria)
     {
-        $sql = 'FROM ' . self::TABLE_NAME. ' ';
-        $firstCriteria = TRUE;
+        $sql = 'FROM ' . self::TABLE_NAME . ' ';
+        $firstCriteria = true;
         foreach ($criteria as $key => $val) {
             $sql .= ($firstCriteria ? 'WHERE' : 'AND') . ' ' . $key . ' = :' . $key . ' ';
-            $firstCriteria = FALSE;
+            $firstCriteria = false;
         }
+
         return $sql;
     }
 

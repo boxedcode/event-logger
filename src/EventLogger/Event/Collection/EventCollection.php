@@ -58,9 +58,10 @@ class EventCollection implements EventCollectionInterface
     public function offsetExists($offset)
     {
         if (isset($this->events[$offset])) {
-            return TRUE;
+            return true;
         }
-        return FALSE;
+
+        return false;
     }
 
     /**

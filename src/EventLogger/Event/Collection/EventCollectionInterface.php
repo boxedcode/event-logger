@@ -16,6 +16,7 @@
 namespace EventLogger\Event\Collection;
 
 use EventLogger\Event\EventInterface;
+use EventLogger\Logger\LoggableInterface;
 
 /**
  * Event collection interface for a collection of events
@@ -23,7 +24,7 @@ use EventLogger\Event\EventInterface;
  * Interface EventCollectionInterface
  * @package EventLogger\Event\Collection
  */
-interface EventCollectionInterface extends \ArrayAccess, \IteratorAggregate
+interface EventCollectionInterface extends \ArrayAccess, \IteratorAggregate, LoggableInterface
 {
     /**
      * Add an event to this collection

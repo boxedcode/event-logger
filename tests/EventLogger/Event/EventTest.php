@@ -16,7 +16,7 @@
 namespace tests\EventLogger\Event;
 
 use EventLogger\Event\Event;
-use EventLogger\Event\EventInterface;
+use EventLogger\Logger\LoggableInterface;
 
 /**
  * Test class for an Event
@@ -40,11 +40,11 @@ class EventTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test that this event is an instance of EventInterface
+     * Test that this event is an instance of LoggableInterface
      */
     public function testIsInstanceOfEventInterface()
     {
-        $this->assertTrue($this->event instanceof EventInterface);
+        $this->assertTrue($this->event instanceof LoggableInterface);
     }
 
     /**

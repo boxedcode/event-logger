@@ -15,13 +15,15 @@
 
 namespace EventLogger\Event;
 
+use EventLogger\Logger\LoggableInterface;
+
 /**
  * Event interface for an event
  *
  * Interface EventInterface
  * @package EventLogger\Event
  */
-interface EventInterface
+interface EventInterface extends LoggableInterface
 {
     /**
      * Get the type

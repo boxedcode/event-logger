@@ -15,30 +15,13 @@
 
 namespace EventLogger\Logger;
 
-use EventLogger\Event\Collection\EventCollectionInterface;
-use EventLogger\Event\EventInterface;
-
 /**
- * A loggable interface for event loggers
+ * An interface for entities that can be logged
  *
  * Interface LoggableInterface
  * @package EventLogger\Logger
  */
 interface LoggableInterface
 {
-    /**
-     * Log an event
-     *
-     * @param EventInterface $event
-     * @return mixed
-     */
-    public function log(EventInterface $event);
 
-    /**
-     * Log a collection of events
-     *
-     * @param EventCollectionInterface $eventCollection
-     * @return mixed
-     */
-    public function logMultiple(EventCollectionInterface $eventCollection);
 }

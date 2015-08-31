@@ -38,5 +38,5 @@ interface StorageInterface
      * @param null $callback
      * @return mixed
      */
-    public function fetch(array $criteria, $callback = NULL);
+    public function fetch(array $criteria, $callback = null);
 }

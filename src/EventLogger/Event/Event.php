@@ -247,15 +247,15 @@ class Event implements EventInterface
     public function toArray()
     {
         return array(
-            'type'          =>  $this->getType(),
-            'sub_type'      =>  $this->getSubType(),
-            'target_type'   =>  $this->getTargetType(),
-            'target_id'     =>  $this->getTargetId(),
-            'message'       =>  $this->getMessage(),
-            'data'          =>  $this->getData(),
-            'created'       =>  isset($this->created) ? $this->getCreated()->format('Y-m-d H:i:s') : date('Y-m-d H:i:s'),
-            'action'        =>  $this->getAction(),
-            'user'          =>  $this->getUser()
+            'type' => $this->getType(),
+            'sub_type' => $this->getSubType(),
+            'target_type' => $this->getTargetType(),
+            'target_id' => $this->getTargetId(),
+            'message' => $this->getMessage(),
+            'data' => $this->getData(),
+            'created' => isset($this->created) ? $this->getCreated()->format('Y-m-d H:i:s') : date('Y-m-d H:i:s'),
+            'action' => $this->getAction(),
+            'user' => $this->getUser()
         );
     }
 

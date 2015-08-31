@@ -24,7 +24,7 @@ use EventLogger\Logger\LoggerInterface;
  * Interface LoggerCollectionInterface
  * @package EventLogger\Logger\Collection
  */
-interface LoggerCollectionInterface extends \ArrayAccess, \IteratorAggregate, LoggableInterface
+interface LoggerCollectionInterface extends \ArrayAccess, \IteratorAggregate
 {
     /**
      * Add a logger to this collection
@@ -48,4 +48,12 @@ interface LoggerCollectionInterface extends \ArrayAccess, \IteratorAggregate, Lo
      * @return mixed
      */
     public function setLoggers(array $loggers);
+
+    /**
+     * Log an event
+     *
+     * @param LoggableInterface $loggable
+     * @return mixed
+     */
+    public function log(LoggableInterface $loggable);
 }

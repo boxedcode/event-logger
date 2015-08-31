@@ -23,7 +23,7 @@ use EventLogger\Storage\StorageInterface;
  * Interface LoggerInterface
  * @package EventLogger\Logger
  */
-interface LoggerInterface extends LoggableInterface
+interface LoggerInterface
 {
     /**
      * Set a storage strategy for this logger
@@ -40,4 +40,11 @@ interface LoggerInterface extends LoggableInterface
      */
     public function getStorage();
 
+    /**
+     * Log an event
+     *
+     * @param LoggableInterface $loggable
+     * @return mixed
+     */
+    public function log(LoggableInterface $loggable);
 }

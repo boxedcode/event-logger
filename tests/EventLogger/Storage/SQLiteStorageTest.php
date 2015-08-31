@@ -53,7 +53,7 @@ class SQLiteStorageTest extends \PHPUnit_Framework_TestCase
             created TEXT DEFAULT '0000-00-00 00:00:00',
             action TEXT DEFAULT NULL,
             user TEXT DEFAULT NULL
-        )",SQLiteStorage::TABLE_NAME));
+        )", SQLiteStorage::TABLE_NAME));
 
         $this->pdo = $pdo;
 
@@ -74,13 +74,13 @@ class SQLiteStorageTest extends \PHPUnit_Framework_TestCase
     public function testEventIsStored()
     {
         $result = $this->storage->save(array(
-            'type'  =>  'event',
-            'sub_type'  =>  'conversion',
-            'action'    =>  'purchase',
-            'message'   =>  'Bob Smith just purchased a shoe',
-            'created'   =>  date('Y-m-d H:i:s')
+            'type' => 'event',
+            'sub_type' => 'conversion',
+            'action' => 'purchase',
+            'message' => 'Bob Smith just purchased a shoe',
+            'created' => date('Y-m-d H:i:s')
         ));
-        $this->assertTrue(TRUE === $result);
+        $this->assertTrue(true === $result);
     }
 
     /**
@@ -89,19 +89,19 @@ class SQLiteStorageTest extends \PHPUnit_Framework_TestCase
     public function testEventCanBeFetched()
     {
         $this->storage->save(array(
-            'type'  =>  'event',
-            'sub_type'  =>  'conversion',
-            'action'    =>  'purchase',
-            'message'   =>  'Bob Smith just purchased a shoe',
-            'created'   =>  date('Y-m-d H:i:s'),
-            'data'      =>  array(
-                'foo'   =>  'bar'
+            'type' => 'event',
+            'sub_type' => 'conversion',
+            'action' => 'purchase',
+            'message' => 'Bob Smith just purchased a shoe',
+            'created' => date('Y-m-d H:i:s'),
+            'data' => array(
+                'foo' => 'bar'
             )
         ));
 
         $results = $this->storage->fetch(array(
-            'type'  =>  'event',
-            'sub_type'  =>  'conversion',
+            'type' => 'event',
+            'sub_type' => 'conversion',
         ));
 
         $this->assertTrue(1 == count($results));

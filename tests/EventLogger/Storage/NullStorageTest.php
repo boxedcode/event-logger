@@ -52,6 +52,6 @@ class NullStorageTest extends \PHPUnit_Framework_TestCase
      */
     public function testNullEventIsFetched()
     {
-        $this->assertTrue(NULL === $this->storage->fetch(array()));
+        $this->assertTrue(null === $this->storage->fetch(array()));
     }
 }

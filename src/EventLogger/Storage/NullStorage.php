@@ -43,7 +43,7 @@ class NullStorage implements StorageInterface
      */
     public function fetch(array $criteria, $callback = null)
     {
-        return NULL;
+        return null;
     }
 
 }

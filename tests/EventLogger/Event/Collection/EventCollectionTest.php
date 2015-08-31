@@ -16,9 +16,10 @@
 namespace tests\EventLogger\Event\Collection;
 
 use EventLogger\Event\Collection\EventCollection;
+use EventLogger\Event\Collection\EventCollectionInterface;
 use EventLogger\Event\Event;
 use EventLogger\Event\EventInterface;
-use EventLogger\Event\Collection\EventCollectionInterface;
+use EventLogger\Logger\LoggableInterface;
 
 /**
  * Test class for an EventCollection
@@ -68,7 +69,7 @@ class EventCollectionTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsInstanceOfEventCollectionInterface()
     {
-        $this->assertTrue($this->collection instanceof EventCollectionInterface);
+        $this->assertTrue($this->collection instanceof LoggableInterface);
     }
 
     /**
