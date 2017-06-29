@@ -69,7 +69,7 @@ class EventCollectionTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsInstanceOfEventCollectionInterface()
     {
-        $this->assertTrue($this->collection instanceof LoggableInterface);
+        $this->assertInstanceOf(LoggableInterface::class, $this->collection);
     }
 
     /**

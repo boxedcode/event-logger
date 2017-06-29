@@ -63,7 +63,7 @@ class LoggerTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsInstanceOfLoggerInterface()
     {
-        $this->assertTrue($this->logger instanceof LoggerInterface);
+        $this->assertInstanceOf(LoggerInterface::class, $this->logger);
     }
 
     /**

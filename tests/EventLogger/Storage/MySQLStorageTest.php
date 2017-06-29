@@ -15,16 +15,16 @@
 
 namespace tests\EventLogger\Storage;
 
-use EventLogger\Storage\SQLiteStorage;
+use EventLogger\Storage\MySQLStorage;
 use EventLogger\Storage\StorageInterface;
 
 /**
- * Test class for the SQLiteStorage persistence strategy
+ * Test class for the MySQLStorage persistence strategy
  *
- * Class SQLiteStorageTest
+ * Class MySQLStorageTest
  * @package tests\EventLogger\Storage
  */
-class SQLiteStorageTest extends \PHPUnit_Framework_TestCase
+class MySQLStorageTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var \PDO
@@ -41,8 +41,11 @@ class SQLiteStorageTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $pdo = new \PDO('sqlite::memory:');
-        $pdo->exec(sprintf("CREATE TABLE IF NOT EXISTS %s (
+        $this->pdo = $this->getMock('\PDO', ['exec'], [], '', false);
+        $this->pdo->method('exec')
+            ->willReturn(true);
+
+        $this->pdo->exec(sprintf("CREATE TABLE IF NOT EXISTS %s (
             id INTEGER PRIMARY KEY,
             type TEXT,
             sub_type TEXT DEFAULT NULL,
@@ -53,11 +56,31 @@ class SQLiteStorageTest extends \PHPUnit_Framework_TestCase
             created TEXT DEFAULT '0000-00-00 00:00:00',
             action TEXT DEFAULT NULL,
             user TEXT DEFAULT NULL
-        )", SQLiteStorage::TABLE_NAME));
+        )", MySQLStorage::TABLE_NAME));
 
-        $this->pdo = $pdo;
+        $this->storage = $this->getMock('\EventLogger\Storage\MySQLStorage', [], [$this->pdo]);
+        $this->storage->expects($this->any())
+            ->method('save')
+            ->will($this->returnCallback(function () {
+                return true;
+            }));
 
-        $this->storage = new SQLiteStorage($this->pdo);
+        $this->storage->method('fetch')
+            ->will($this->returnCallback(function () {
+                return [
+                    [
+                        'type' => 'event',
+                        'sub_type' => 'conversion',
+                        'action' => 'purchase',
+                        'message' => 'Bob Smith just purchased a shoe',
+                        'created' => date('Y-m-d H:i:s'),
+                        'data' => [
+                            'foo' => 'bar'
+                        ]
+                    ]
+                ];
+            }));
+
     }
 
     /**
@@ -73,13 +96,13 @@ class SQLiteStorageTest extends \PHPUnit_Framework_TestCase
      */
     public function testEventIsStored()
     {
-        $result = $this->storage->save(array(
+        $result = $this->storage->save([
             'type' => 'event',
             'sub_type' => 'conversion',
             'action' => 'purchase',
             'message' => 'Bob Smith just purchased a shoe',
             'created' => date('Y-m-d H:i:s')
-        ));
+        ]);
         $this->assertTrue(true === $result);
     }
 
@@ -88,7 +111,7 @@ class SQLiteStorageTest extends \PHPUnit_Framework_TestCase
      */
     public function testEventCanBeFetched()
     {
-        $this->storage->save(array(
+        $this->storage->save([
             'type' => 'event',
             'sub_type' => 'conversion',
             'action' => 'purchase',
@@ -97,7 +120,7 @@ class SQLiteStorageTest extends \PHPUnit_Framework_TestCase
             'data' => array(
                 'foo' => 'bar'
             )
-        ));
+        ]);
 
         $results = $this->storage->fetch(array(
             'type' => 'event',

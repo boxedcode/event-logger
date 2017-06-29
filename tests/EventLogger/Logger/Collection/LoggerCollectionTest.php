@@ -76,7 +76,7 @@ class LoggerCollectionTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsInstanceofLoggerCollectionInterface()
     {
-        $this->assertTrue($this->collection instanceof LoggerCollectionInterface);
+        $this->assertInstanceOf(LoggerCollectionInterface::class, $this->collection);
     }
 
     /**

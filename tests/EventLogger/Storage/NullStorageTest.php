@@ -44,7 +44,7 @@ class NullStorageTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsInstanceOfStorageInterface()
     {
-        $this->assertTrue($this->storage instanceof StorageInterface);
+        $this->assertInstanceOf(StorageInterface::class, $this->storage);
     }
 
     /**

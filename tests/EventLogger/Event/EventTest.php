@@ -44,7 +44,7 @@ class EventTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsInstanceOfEventInterface()
     {
-        $this->assertTrue($this->event instanceof LoggableInterface);
+        $this->assertInstanceOf(LoggableInterface::class, $this->event);
     }
 
     /**
