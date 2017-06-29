@@ -24,7 +24,7 @@ With event logger you can:
 
 ## Requirements
 
-- PHP 5.5.0+
+- PHP 5.6.0+
 - SQLite 3.0.7+ (required for the unit tests, you do not have to use the provided SQLite storage implementation)
 - Optional but recommended: Composer
 
