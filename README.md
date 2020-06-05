@@ -18,7 +18,7 @@ With event logger you can:
     `@see EventLogger\Event\EventInterface`
 
 - Query and analyse the collected data
-- Multiple persistence strategies (currently ships with an SQLite and Null implementation)
+- Multiple persistence strategies (currently ships with an SQLite, MySQL and Null implementation)
 - Extensible architecture
 - Full test coverage with [phpunit](https://phpunit.de/)
 
